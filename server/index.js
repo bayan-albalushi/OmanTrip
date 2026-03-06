@@ -36,9 +36,7 @@ const MONGODB_URI =
 
 const FRONTEND_URL =
 
-  process.env.FRONTEND_URL ||
-
-  "https://oman-trip-kjdijpp315-bayan-albalushis-projects.vercel.app";
+  process.env.FRONTEND_URL || "https://oman-trip.vercel.app";
 
 /* =========================
 
@@ -52,13 +50,15 @@ const allowedOrigins = [
 
   FRONTEND_URL,
 
+  "https://oman-trip.vercel.app",
+
 ];
 
 app.use(
 
   cors({
 
-    origin: function (origin, callback) {
+    origin(origin, callback) {
 
       if (!origin || allowedOrigins.includes(origin)) {
 
@@ -650,7 +650,7 @@ Return ONLY valid JSON (no markdown, no extra text) with this schema:
 
 /* =========================
 
-   Start Server After MongoDB
+   Start Server
 
 ========================= */
 
@@ -668,7 +668,7 @@ async function startServer() {
 
     app.listen(PORT, () => {
 
-      console.log(`API running on http://localhost:${PORT}`);
+      console.log(`API running on port ${PORT}`);
 
     });
 
@@ -681,4 +681,5 @@ async function startServer() {
 }
 
 startServer();
+omantrip
  
