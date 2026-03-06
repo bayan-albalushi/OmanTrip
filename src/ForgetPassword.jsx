@@ -6,7 +6,7 @@ import omanIcon from "./assets/map.png";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
-
+    const API_URL = import.meta.env.VITE_API_URL;
   const [email, setEmail] = useState("");
 
   const [msg, setMsg] = useState("");
@@ -28,7 +28,9 @@ export default function ForgotPassword() {
 
     try {
       const res = await fetch(
-        "http://localhost:3001/api/auth/forgot-password",
+
+        `${API_URL}/api/auth/forgot-password`,
+        
         {
           method: "POST",
 

@@ -7,7 +7,7 @@ import omanIcon from "./assets/map.png";
 export default function ResetPassword() {
 
   const navigate = useNavigate();
-
+const API_URL = import.meta.env.VITE_API_URL;
   const { token } = useParams();
 
   const [password, setPassword] = useState("");
@@ -43,8 +43,7 @@ export default function ResetPassword() {
     try {
 
       const res = await fetch(
-
-        `http://localhost:3001/api/auth/reset-password/${token}`,
+        `${API_URL}/api/auth/reset-password/${token}`,
 
         {
 

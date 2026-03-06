@@ -36,7 +36,7 @@ export default function TripResult() {
 
   const [saveMsg, setSaveMsg] = useState("");
 
-  const API_URL = "http://localhost:3001/api/plan";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/plan`;
 
   const currentUser = useMemo(() => {
 
@@ -56,81 +56,44 @@ export default function TripResult() {
 
   const isGuest = !token || !currentUser?.id;
 
-  const t = {
-
-    en: {
-
-      edit: "Edit",
-
-      regenerate: "Regenerate",
-
-      loading: "Generating your trip plan…",
-
-      errorTitle: "Couldn’t generate plan",
-
-      tryAgain: "Try again",
-
-      yourTripPlan: "Your Trip Plan",
-
-      anyBudget: "Any budget",
-
-      day: "Day",
-
-      tripSummary: "Trip summary",
-
-      saveTrip: "Save trip",
-
-      savedOk: "Trip saved successfully.",
-
-      loginRequired: "Please log in or create an account to save trips.",
-
-      requestTimeout:
-
-        "Request timed out. Make sure server is running on localhost:3001",
-
-      failedFetch:
-
-        "Failed to fetch. Server might be OFF / wrong PORT / blocked.\nCheck: http://localhost:3001/health",
-
-    },
-
-    ar: {
-
-      edit: "تعديل",
-
-      regenerate: "إعادة التوليد",
-
-      loading: "جارٍ إنشاء خطة رحلتك…",
-
-      errorTitle: "تعذر إنشاء الخطة",
-
-      tryAgain: "حاولي مرة أخرى",
-
-      yourTripPlan: "خطة رحلتك",
-
-      anyBudget: "أي ميزانية",
-
-      day: "اليوم",
-
-      tripSummary: "ملخص الرحلة",
-
-      saveTrip: "حفظ الرحلة",
-
-      savedOk: "تم حفظ الرحلة بنجاح.",
-
-      loginRequired: "سجلي الدخول أو أنشئي حسابًا لحفظ الرحلات.",
-
-      requestTimeout:
-
-        "انتهت مهلة الطلب. تأكدي أن الخادم يعمل على localhost:3001",
-
-      failedFetch:
-
-        "فشل الاتصال. قد يكون الخادم متوقفًا أو المنفذ غير صحيح أو محجوبًا.\nتحققي من: http://localhost:3001/health",
-
-    },
-
-  }[language];
+ const t = {
+ en: {
+   edit: "Edit",
+   regenerate: "Regenerate",
+   loading: "Generating your trip plan…",
+   errorTitle: "Couldn’t generate plan",
+   tryAgain: "Try again",
+   yourTripPlan: "Your Trip Plan",
+   anyBudget: "Any budget",
+   day: "Day",
+   tripSummary: "Trip summary",
+   saveTrip: "Save trip",
+   savedOk: "Trip saved successfully.",
+   loginRequired: "Please log in or create an account to save trips.",
+   requestTimeout:
+     "Request timed out. Please make sure the server is running.",
+   failedFetch:
+     "Failed to fetch. The server may be off or unavailable. Please try again later.",
+ },
+ ar: {
+   edit: "تعديل",
+   regenerate: "إعادة التوليد",
+   loading: "جارٍ إنشاء خطة رحلتك…",
+   errorTitle: "تعذر إنشاء الخطة",
+   tryAgain: "حاولي مرة أخرى",
+   yourTripPlan: "خطة رحلتك",
+   anyBudget: "أي ميزانية",
+   day: "اليوم",
+   tripSummary: "ملخص الرحلة",
+   saveTrip: "حفظ الرحلة",
+   savedOk: "تم حفظ الرحلة بنجاح.",
+   loginRequired: "سجلي الدخول أو أنشئي حسابًا لحفظ الرحلات.",
+   requestTimeout:
+     "انتهت مهلة الطلب. تأكدي أن الخادم يعمل.",
+   failedFetch:
+     "فشل الاتصال. قد يكون الخادم متوقفًا أو غير متاح حاليًا. حاولي مرة أخرى لاحقًا.",
+ },
+}[language];
 
   const prefs = useMemo(() => {
 
