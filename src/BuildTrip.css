@@ -1,0 +1,804 @@
+:root {
+
+  --bg-page: #111;
+
+  --bg-card: #f6f2f7;
+
+  --bg-surface: #ffffff;
+
+  --text-main: #111111;
+
+  --text-soft: rgba(0, 0, 0, 0.55);
+
+  --text-strong: #111111;
+
+  --border-soft: rgba(0, 0, 0, 0.08);
+
+  --border-mid: rgba(0, 0, 0, 0.1);
+
+  --primary: #2f6bff;
+
+  --shadow-main: 0 20px 60px rgba(0, 0, 0, 0.35);
+
+}
+
+:root[data-theme="dark"] {
+
+  --bg-page: #0f1115;
+
+  --bg-card: #171a21;
+
+  --bg-surface: #1f2430;
+
+  --text-main: #f5f7fb;
+
+  --text-soft: rgba(255, 255, 255, 0.68);
+
+  --text-strong: #f5f7fb;
+
+  --border-soft: rgba(255, 255, 255, 0.10);
+
+  --border-mid: rgba(255, 255, 255, 0.12);
+
+  --primary: #79a0ff;
+
+  --shadow-main: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+}
+
+.btPage {
+
+  min-height: 100vh;
+
+  background: var(--bg-page);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 24px;
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+.btCard {
+
+  width: min(1200px, 92vw);
+
+  height: min(720px, 92vh);
+
+  position: relative;
+
+  border-radius: 18px;
+
+  overflow: auto;
+
+  box-shadow: var(--shadow-main);
+
+  background: var(--bg-card);
+
+  color: var(--text-main);
+
+}
+
+.btTopBar {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 34px;
+
+  padding: 22px 28px;
+
+  background: var(--bg-card);
+
+  border-bottom: 1px solid var(--border-soft);
+
+}
+
+.btLogo {
+
+  font-weight: 700;
+
+  font-size: 22px;
+
+  color: var(--primary);
+
+  flex-shrink: 0;
+
+}
+
+.btNav {
+
+  display: flex;
+
+  gap: 26px;
+
+  align-items: center;
+
+  margin-right: auto;
+
+  margin-left: 34px;
+
+}
+
+.btTopActions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+}
+
+.btNavItem {
+
+  font-weight: 600;
+
+  color: var(--text-soft);
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  text-decoration: none;
+
+  padding-bottom: 8px;
+
+  border-bottom: 2px solid transparent;
+
+  line-height: 1;
+
+  user-select: none;
+
+  background: none;
+
+  border-top: none;
+
+  border-left: none;
+
+  border-right: none;
+
+  font-family: inherit;
+
+}
+
+.btNavItem:hover {
+
+  color: var(--text-main);
+
+}
+
+.btNavActive {
+
+  color: var(--primary);
+
+  border-bottom-color: var(--primary);
+
+}
+
+.btNavBtn {
+
+  font-family: inherit;
+
+}
+
+.btBody {
+
+  padding: 14px 28px 26px;
+
+}
+
+.btWrap {
+
+  max-width: 980px;
+
+  margin: 0 auto;
+
+}
+
+.btTitle {
+
+  margin: 10px 0 6px;
+
+  font-size: 40px;
+
+  line-height: 1.08;
+
+  font-weight: 680;
+
+  letter-spacing: -0.02em;
+
+  text-align: center;
+
+  color: var(--text-strong);
+
+}
+
+.btSub {
+
+  color: var(--text-soft);
+
+  font-weight: 600;
+
+  margin-bottom: 18px;
+
+  font-size: 15px;
+
+  text-align: center;
+
+}
+
+.btGrid {
+
+  display: grid;
+
+  grid-template-columns: 1.65fr 1fr;
+
+  gap: 16px;
+
+  align-items: start;
+
+}
+
+@media (max-width: 980px) {
+
+  .btGrid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+.btSection {
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-soft);
+
+  border-radius: 12px;
+
+  padding: 12px;
+
+  margin-bottom: 12px;
+
+}
+
+.btSectionHead {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+}
+
+.btEmoji {
+
+  font-size: 16px;
+
+  opacity: 0.95;
+
+}
+
+.btSectionTitle {
+
+  font-weight: 800;
+
+  color: var(--text-main);
+
+  font-size: 13px;
+
+}
+
+.btStyleRow {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+}
+
+@media (max-width: 760px) {
+
+  .btStyleRow {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+.btStyleCard {
+
+  width: 100%;
+
+  text-align: left;
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-mid);
+
+  border-radius: 10px;
+
+  padding: 12px;
+
+  cursor: pointer;
+
+  display: grid;
+
+  grid-template-columns: 14px 1fr auto;
+
+  gap: 10px;
+
+  align-items: start;
+
+  color: var(--text-main);
+
+}
+
+.btStyleWide {
+
+  margin-top: 2px;
+
+}
+
+.btStyleCard.isActive {
+
+  border-color: rgba(47, 107, 255, 0.55);
+
+  background: rgba(47, 107, 255, 0.06);
+
+}
+
+.btRadio {
+
+  width: 10px;
+
+  height: 10px;
+
+  border-radius: 999px;
+
+  border: 2px solid rgba(0, 0, 0, 0.18);
+
+  margin-top: 3px;
+
+  background: transparent;
+
+}
+
+:root[data-theme="dark"] .btRadio {
+
+  border-color: rgba(255, 255, 255, 0.35);
+
+}
+
+.btRadio.on {
+
+  border-color: var(--primary);
+
+  background: var(--primary);
+
+}
+
+.btStyleName {
+
+  font-weight: 800;
+
+  font-size: 13px;
+
+  color: var(--text-strong);
+
+}
+
+.btStyleSmall {
+
+  margin-top: 2px;
+
+  font-weight: 600;
+
+  font-size: 11px;
+
+  color: var(--text-soft);
+
+}
+
+.btMetaLine {
+
+  margin-top: 8px;
+
+  font-weight: 600;
+
+  font-size: 10.5px;
+
+  color: var(--text-soft);
+
+}
+
+.btDot {
+
+  opacity: 0.55;
+
+  margin: 0 6px;
+
+}
+
+.btLinkText {
+
+  margin-top: 8px;
+
+  display: inline-block;
+
+  color: var(--primary);
+
+  font-weight: 700;
+
+  font-size: 11px;
+
+}
+
+.btArt {
+
+  width: 44px;
+
+  height: 30px;
+
+  display: grid;
+
+  place-items: center;
+
+  font-size: 20px;
+
+  opacity: 0.9;
+
+}
+
+.btBudgetRow {
+
+  display: flex;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+}
+
+.btBudgetBtn {
+
+  border: 1px solid var(--border-mid);
+
+  background: var(--bg-surface);
+
+  border-radius: 8px;
+
+  padding: 9px 12px;
+
+  cursor: pointer;
+
+  font-weight: 800;
+
+  font-size: 12px;
+
+  display: inline-flex;
+
+  gap: 8px;
+
+  align-items: center;
+
+  min-width: 96px;
+
+  justify-content: center;
+
+  color: var(--text-main);
+
+  font-family: inherit;
+
+}
+
+.btBudgetBtn span {
+
+  color: inherit;
+
+}
+
+.btBudgetBtn.isActive {
+
+  border-color: rgba(47, 107, 255, 0.55);
+
+  background: rgba(47, 107, 255, 0.06);
+
+}
+
+.btBudgetFooter {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 10px;
+
+}
+
+.btFooterLink {
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--primary);
+
+  font-weight: 800;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  font-family: inherit;
+
+}
+
+.btDaysRow {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+.btRange {
+
+  width: 100%;
+
+  accent-color: var(--primary);
+
+}
+
+.btDaysValue {
+
+  font-weight: 800;
+
+  min-width: 70px;
+
+  text-align: right;
+
+  font-size: 12px;
+
+  color: var(--text-main);
+
+}
+
+.btSummary {
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-soft);
+
+  border-radius: 12px;
+
+  padding: 14px;
+
+}
+
+.btSummaryTitle {
+
+  font-weight: 800;
+
+  font-size: 13px;
+
+  margin-bottom: 10px;
+
+  color: var(--text-strong);
+
+}
+
+.btSummaryList {
+
+  display: grid;
+
+  gap: 9px;
+
+  color: var(--text-main);
+
+  font-weight: 600;
+
+  font-size: 11px;
+
+}
+
+.btSummaryItem {
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+
+}
+
+.btBullet {
+
+  width: 18px;
+
+  display: inline-flex;
+
+  justify-content: center;
+
+  opacity: 0.65;
+
+}
+
+.btPrimary {
+
+  width: 100%;
+
+  margin-top: 14px;
+
+  border: none;
+
+  background: var(--primary);
+
+  color: #fff;
+
+  border-radius: 8px;
+
+  padding: 10px 12px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  font-family: inherit;
+
+}
+
+.btClear {
+
+  width: 100%;
+
+  margin-top: 10px;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--primary);
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  font-size: 11px;
+
+  font-family: inherit;
+
+}
+
+.btHint {
+
+  margin-top: 12px;
+
+  background: rgba(47, 107, 255, 0.08);
+
+  border: 1px solid rgba(47, 107, 255, 0.14);
+
+  border-radius: 12px;
+
+  padding: 12px;
+
+  display: grid;
+
+  grid-template-columns: 26px 1fr;
+
+  gap: 10px;
+
+  align-items: start;
+
+}
+
+.btHintIcon {
+
+  font-size: 16px;
+
+}
+
+.btHintText {
+
+  color: var(--text-soft);
+
+  font-weight: 650;
+
+  font-size: 11px;
+
+  line-height: 1.35;
+
+}
+
+.btCard * {
+
+  box-sizing: border-box;
+
+}
+
+.btCard button,
+
+.btCard input,
+
+.btCard a {
+
+  font-family: inherit;
+
+}
+
+.btTopBar,
+
+.btNav,
+
+.btNavItem {
+
+  box-shadow: none;
+
+}
+
+/* RTL support */
+
+html[dir="rtl"] .btNav {
+
+  margin-right: 34px;
+
+  margin-left: auto;
+
+}
+
+
+
+html[dir="rtl"] .btStyleCard,
+
+html[dir="rtl"] .btBudgetBtn,
+
+html[dir="rtl"] .btSummaryItem,
+
+html[dir="rtl"] .btDaysRow,
+
+html[dir="rtl"] .btSectionHead {
+
+  direction: rtl;
+
+}
+
+html[dir="rtl"] .btDaysValue {
+
+  text-align: left;
+
+}
+ 

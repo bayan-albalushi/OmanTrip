@@ -1,0 +1,929 @@
+:root {
+
+  --bg-page: #111;
+
+  --bg-card: #f6f2f7;
+
+  --bg-surface: #ffffff;
+
+  --text-main: #111111;
+
+  --text-soft: rgba(0, 0, 0, 0.55);
+
+  --text-strong: #111111;
+
+  --border-soft: rgba(0, 0, 0, 0.08);
+
+  --border-mid: rgba(0, 0, 0, 0.1);
+
+  --primary: #2f6bff;
+
+  --shadow-main: 0 20px 60px rgba(0, 0, 0, 0.35);
+
+}
+
+:root[data-theme="dark"] {
+
+  --bg-page: #0f1115;
+
+  --bg-card: #171a21;
+
+  --bg-surface: #1f2430;
+
+  --text-main: #f5f7fb;
+
+  --text-soft: rgba(255, 255, 255, 0.68);
+
+  --text-strong: #f5f7fb;
+
+  --border-soft: rgba(255, 255, 255, 0.10);
+
+  --border-mid: rgba(255, 255, 255, 0.12);
+
+  --primary: #79a0ff;
+
+  --shadow-main: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+}
+
+.svPage {
+
+  min-height: 100vh;
+
+  background: var(--bg-page);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 24px;
+
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+.svCard {
+
+  width: min(1200px, 92vw);
+
+  height: min(720px, 92vh);
+
+  position: relative;
+
+  border-radius: 18px;
+
+  overflow: auto;
+
+  box-shadow: var(--shadow-main);
+
+  background: var(--bg-card);
+
+  color: var(--text-main);
+
+}
+
+.svCard button {
+
+  font-family: inherit;
+
+}
+
+.svTopBar {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 34px;
+
+  padding: 22px 28px;
+
+  background: var(--bg-card);
+
+  border-bottom: 1px solid var(--border-soft);
+
+}
+
+.svLogo {
+
+  font-weight: 700;
+
+  font-size: 22px;
+
+  color: var(--primary);
+
+  flex-shrink: 0;
+
+}
+
+.svNav {
+
+  display: flex;
+
+  gap: 26px;
+
+  align-items: center;
+
+  margin-right: auto;
+
+  margin-left: 34px;
+
+}
+
+
+.svNavItem {
+
+  font-weight: 600;
+
+  color: var(--text-soft);
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  text-decoration: none;
+
+  padding-bottom: 8px;
+
+  border-bottom: 2px solid transparent;
+
+  line-height: 1;
+
+  user-select: none;
+
+  background: none;
+
+  border-top: none;
+
+  border-left: none;
+
+  border-right: none;
+
+  font-family: inherit;
+
+}
+
+.svNavItem:hover {
+
+  color: var(--text-main);
+
+}
+
+.svNavActive {
+
+  color: var(--primary);
+
+  border-bottom-color: var(--primary);
+
+}
+
+.svNavBtn {
+
+  font-family: inherit;
+
+}
+
+.svBody {
+
+  padding: 18px 28px 28px;
+
+}
+
+.svWrap {
+
+  max-width: 980px;
+
+  margin: 0 auto;
+
+}
+
+.svHeader {
+
+  display: grid;
+
+  gap: 6px;
+
+  margin: 10px 0 14px;
+
+}
+
+.svTitle {
+
+  margin: 0;
+
+  font-size: 44px;
+
+  line-height: 1.05;
+
+  font-weight: 900;
+
+  letter-spacing: -0.02em;
+
+  color: var(--text-strong);
+
+}
+
+.svSub {
+
+  color: var(--text-soft);
+
+  font-weight: 650;
+
+  font-size: 14px;
+
+}
+
+.svDot {
+
+  opacity: 0.55;
+
+  margin: 0 6px;
+
+}
+
+.svTabs {
+
+  display: flex;
+
+  gap: 10px;
+
+  margin: 10px 0 16px;
+
+}
+
+.svTab {
+
+  border: 1px solid var(--border-mid);
+
+  background: var(--bg-surface);
+
+  border-radius: 999px;
+
+  padding: 10px 14px;
+
+  font-weight: 900;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  color: var(--text-main);
+
+}
+
+.svTab.isActive {
+
+  border-color: rgba(47, 107, 255, 0.55);
+
+  background: rgba(47, 107, 255, 0.08);
+
+  color: var(--primary);
+
+}
+
+.svGrid {
+
+  display: grid;
+
+  grid-template-columns: 1.6fr 1fr;
+
+  gap: 16px;
+
+  align-items: start;
+
+}
+
+@media (max-width: 980px) {
+
+  .svGrid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+.svSection {
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-soft);
+
+  border-radius: 14px;
+
+  padding: 14px;
+
+}
+
+.svSectionHead {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+}
+
+.svSectionTitle {
+
+  font-weight: 900;
+
+  font-size: 14px;
+
+  color: var(--text-main);
+
+}
+
+.svHeadLinks {
+
+  display: flex;
+
+  gap: 12px;
+
+  align-items: center;
+
+}
+
+.svLink {
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--primary);
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  font-size: 12px;
+
+}
+
+.svLink:disabled {
+
+  opacity: 0.4;
+
+  cursor: not-allowed;
+
+}
+
+.svEmpty {
+
+  padding: 16px;
+
+  border-radius: 12px;
+
+  border: 1px dashed var(--border-mid);
+
+  color: var(--text-soft);
+
+  font-weight: 650;
+
+}
+
+.svList {
+
+  display: grid;
+
+  gap: 12px;
+
+}
+
+.svItem {
+
+  display: grid;
+
+  grid-template-columns: 76px 1fr auto;
+
+  gap: 12px;
+
+  align-items: center;
+
+  border: 1px solid var(--border-soft);
+
+  border-radius: 12px;
+
+  padding: 10px;
+
+  background: var(--bg-surface);
+
+}
+
+.svThumb {
+
+  width: 76px;
+
+  height: 54px;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.04);
+
+  border: 1px solid var(--border-soft);
+
+  display: grid;
+
+  place-items: center;
+
+}
+
+.svThumb img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+.svThumbFallback {
+
+  font-size: 20px;
+
+  opacity: 0.75;
+
+}
+
+.svInfo {
+
+  min-width: 0;
+
+}
+
+.svName {
+
+  font-weight: 900;
+
+  font-size: 13px;
+
+  margin-bottom: 3px;
+
+  color: var(--text-strong);
+
+}
+
+.svMeta {
+
+  font-weight: 700;
+
+  font-size: 11px;
+
+  color: var(--text-soft);
+
+}
+
+.svRemove {
+
+  border: 1px solid var(--border-mid);
+
+  background: var(--bg-surface);
+
+  border-radius: 10px;
+
+  padding: 8px 10px;
+
+  cursor: pointer;
+
+  font-weight: 900;
+
+  font-size: 12px;
+
+  color: var(--text-main);
+
+}
+
+.svRemove:hover {
+
+  background: rgba(0, 0, 0, 0.03);
+
+}
+
+.svTrips {
+
+  display: grid;
+
+  gap: 12px;
+
+}
+
+.svTripCard {
+
+  border: 1px solid var(--border-soft);
+
+  border-radius: 14px;
+
+  padding: 12px;
+
+  background: var(--bg-surface);
+
+}
+
+.svTripHead {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  align-items: start;
+
+}
+
+.svTripTitle {
+
+  font-weight: 900;
+
+  font-size: 14px;
+
+  margin-bottom: 4px;
+
+  color: var(--text-strong);
+
+}
+
+.svTripSub {
+
+  font-weight: 700;
+
+  font-size: 11px;
+
+  color: var(--text-soft);
+
+}
+
+.svTripActions {
+
+  display: flex;
+
+  gap: 8px;
+
+}
+
+.svMini,
+
+.svMiniDanger {
+
+  border: 1px solid var(--border-mid);
+
+  background: var(--bg-surface);
+
+  border-radius: 10px;
+
+  padding: 8px 10px;
+
+  cursor: pointer;
+
+  font-weight: 900;
+
+  font-size: 12px;
+
+  color: var(--text-main);
+
+}
+
+.svMiniDanger {
+
+  background: rgba(255, 0, 0, 0.04);
+
+}
+
+.svTripBody {
+
+  margin-top: 10px;
+
+  border-top: 1px solid var(--border-soft);
+
+  padding-top: 10px;
+
+}
+
+.svTripSummary {
+
+  background: rgba(47, 107, 255, 0.06);
+
+  border: 1px solid rgba(47, 107, 255, 0.12);
+
+  border-radius: 12px;
+
+  padding: 10px;
+
+  font-weight: 750;
+
+  font-size: 12px;
+
+  color: var(--text-main);
+
+  margin-bottom: 10px;
+
+}
+
+.svTripDays {
+
+  display: grid;
+
+  gap: 10px;
+
+}
+
+.svTripDay {
+
+  border: 1px solid var(--border-soft);
+
+  border-radius: 12px;
+
+  padding: 10px;
+
+}
+
+.svTripDayTitle {
+
+  font-weight: 900;
+
+  font-size: 12px;
+
+  margin-bottom: 8px;
+
+  color: var(--text-strong);
+
+}
+
+.svTripItems {
+
+  display: grid;
+
+  gap: 8px;
+
+}
+
+.svTripItem {
+
+  display: grid;
+
+  grid-template-columns: auto 1fr;
+
+  gap: 10px;
+
+  align-items: start;
+
+}
+
+.svChip {
+
+  font-weight: 900;
+
+  font-size: 11px;
+
+  color: var(--primary);
+
+  background: rgba(47, 107, 255, 0.08);
+
+  border: 1px solid rgba(47, 107, 255, 0.14);
+
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  height: fit-content;
+
+}
+
+.svTripItemText {
+
+  min-width: 0;
+
+}
+
+.svTripPlace {
+
+  font-weight: 900;
+
+  font-size: 12px;
+
+  margin-bottom: 2px;
+
+  color: var(--text-strong);
+
+}
+
+.svCity {
+
+  font-weight: 800;
+
+  color: var(--text-soft);
+
+}
+
+.svTripWhy {
+
+  font-weight: 700;
+
+  font-size: 11px;
+
+  color: var(--text-soft);
+
+  line-height: 1.35;
+
+}
+
+.svSummary {
+
+  background: var(--bg-surface);
+
+  border: 1px solid var(--border-soft);
+
+  border-radius: 14px;
+
+  padding: 14px;
+
+}
+
+.svSummaryTitle {
+
+  font-weight: 900;
+
+  font-size: 14px;
+
+  margin-bottom: 10px;
+
+  color: var(--text-strong);
+
+}
+
+.svSummaryList {
+
+  display: grid;
+
+  gap: 10px;
+
+  color: var(--text-main);
+
+  font-weight: 750;
+
+  font-size: 12px;
+
+}
+
+.svSummaryItem {
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+
+}
+
+.svBullet {
+
+  width: 18px;
+
+  display: inline-flex;
+
+  justify-content: center;
+
+  opacity: 0.65;
+
+}
+
+.svPrimary {
+
+  width: 100%;
+
+  margin-top: 10px;
+
+  border: none;
+
+  background: var(--primary);
+
+  color: #fff !important;
+
+  border-radius: 10px;
+
+  padding: 12px 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+}
+
+.svPrimary:disabled,
+
+.svClear:disabled {
+
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+}
+
+.svClear {
+
+  width: 100%;
+
+  margin-top: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--primary);
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+}
+
+.svHint {
+
+  margin-top: 12px;
+
+  background: rgba(47, 107, 255, 0.08);
+
+  border: 1px solid rgba(47, 107, 255, 0.14);
+
+  border-radius: 12px;
+
+  padding: 12px;
+
+  display: grid;
+
+  grid-template-columns: 26px 1fr;
+
+  gap: 10px;
+
+  align-items: start;
+
+}
+
+.svHintIcon {
+
+  font-size: 18px;
+
+}
+
+.svHintText {
+
+  color: var(--text-soft);
+
+  font-weight: 750;
+
+  font-size: 12px;
+
+  line-height: 1.35;
+
+}
+
+/* RTL */
+
+html[dir="rtl"] .svNav {
+
+  margin-right: 34px;
+
+  margin-left: auto;
+
+}
+
+
+
+html[dir="rtl"] .svTripItem,
+
+html[dir="rtl"] .svSummaryItem,
+
+html[dir="rtl"] .svSectionHead,
+
+html[dir="rtl"] .svHeadLinks,
+
+html[dir="rtl"] .svItem {
+
+  direction: rtl;
+
+}
+ 

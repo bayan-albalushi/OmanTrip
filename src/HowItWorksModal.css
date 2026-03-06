@@ -1,0 +1,326 @@
+.hiBackdrop {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  display: grid;
+
+  place-items: center;
+
+  z-index: 9999;
+
+  padding: 18px;
+
+}
+
+.hiModal {
+
+  width: min(640px, 92vw);
+
+  background: var(--bg-surface, #fff);
+
+  border-radius: 22px;
+
+  border: 1px solid var(--border-soft, rgba(0, 0, 0, 0.08));
+
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.22);
+
+  padding: 18px;
+
+}
+
+.hiHead {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 14px;
+
+}
+
+.hiEyebrow {
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  color: var(--primary, #2f6bff);
+
+  margin-bottom: 4px;
+
+}
+
+.hiTitle {
+
+  font-weight: 900;
+
+  font-size: 20px;
+
+  color: var(--text-strong, #111);
+
+}
+
+.hiClose {
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-weight: 900;
+
+  font-size: 18px;
+
+  color: var(--text-main, #111);
+
+  opacity: 0.65;
+
+  line-height: 1;
+
+}
+
+.hiIntroCard {
+
+  display: grid;
+
+  grid-template-columns: 38px 1fr;
+
+  gap: 12px;
+
+  align-items: start;
+
+  padding: 14px;
+
+  border-radius: 16px;
+
+  background: rgba(47, 107, 255, 0.06);
+
+  border: 1px solid rgba(47, 107, 255, 0.10);
+
+}
+
+.hiAvatar {
+
+  width: 38px;
+
+  height: 38px;
+
+  border-radius: 999px;
+
+  display: grid;
+
+  place-items: center;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+  color: #2f6bff;
+
+  background: rgba(47, 107, 255, 0.12);
+
+}
+
+.hiIntroText {
+
+  color: var(--text-main, #111);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+}
+
+.hiOptionList {
+
+  display: grid;
+
+  gap: 10px;
+
+  margin-top: 14px;
+
+}
+
+.hiOption {
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  text-align: left;
+
+  border: 1px solid var(--border-soft, rgba(0, 0, 0, 0.10));
+
+  background: var(--bg-surface, #fff);
+
+  color: var(--text-main, #111);
+
+  border-radius: 14px;
+
+  padding: 12px 14px;
+
+  font-weight: 800;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  transition: 0.18s ease;
+
+}
+
+.hiOption:hover {
+
+  border-color: rgba(47, 107, 255, 0.28);
+
+  background: rgba(47, 107, 255, 0.03);
+
+}
+
+.hiOption.isActive {
+
+  border-color: rgba(47, 107, 255, 0.35);
+
+  background: rgba(47, 107, 255, 0.08);
+
+  color: var(--primary, #2f6bff);
+
+}
+
+.hiOptionDot {
+
+  width: 8px;
+
+  height: 8px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+
+  opacity: 0.9;
+
+  flex-shrink: 0;
+
+}
+
+.hiAnswerCard {
+
+  margin-top: 14px;
+
+  padding: 14px;
+
+  border-radius: 16px;
+
+  background: var(--bg-surface, #fff);
+
+  border: 1px solid var(--border-soft, rgba(0, 0, 0, 0.08));
+
+}
+
+.hiAnswerLabel {
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  color: var(--primary, #2f6bff);
+
+  margin-bottom: 8px;
+
+}
+
+.hiAnswerText {
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+  font-weight: 700;
+
+  color: var(--text-main, #111);
+
+}
+
+.hiActions {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 16px;
+
+}
+
+.hiPrimary {
+
+  border: none;
+
+  background: var(--primary, #2f6bff);
+
+  color: #fff;
+
+  border-radius: 12px;
+
+  padding: 10px 14px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+}
+
+.hiPrimary:focus,
+
+.hiClose:focus,
+
+.hiOption:focus {
+
+  outline: 2px solid rgba(47, 107, 255, 0.35);
+
+  outline-offset: 2px;
+
+}
+
+/* RTL */
+
+html[dir="rtl"] .hiModal {
+
+  direction: rtl;
+
+}
+
+html[dir="rtl"] .hiOption {
+
+  text-align: right;
+
+}
+
+html[dir="rtl"] .hiActions {
+
+  justify-content: flex-start;
+
+}
+ 
