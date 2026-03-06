@@ -753,5 +753,3 @@ export default function Saved() {
   );
 
 }
-currentUser
- 
