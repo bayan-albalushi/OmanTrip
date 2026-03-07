@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 export default function Register() {
 
   const navigate = useNavigate();
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "https://omantrip.onrender.com";
   const [name, setName] = useState("");
 
   const [email, setEmail] = useState("");
