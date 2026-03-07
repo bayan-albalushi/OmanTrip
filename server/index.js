@@ -74,7 +74,7 @@ app.use(
 
     allowedHeaders: ["Content-Type", "Authorization"],
 
-  })
+  }),
 
 );
 
@@ -102,7 +102,7 @@ function createToken(user) {
 
     JWT_SECRET,
 
-    { expiresIn: "7d" }
+    { expiresIn: "7d" },
 
   );
 
@@ -158,7 +158,7 @@ async function sendWelcomeEmail(toEmail, name) {
 
   }
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
 
     from: process.env.EMAIL_FROM || process.env.SMTP_USER,
 
@@ -178,6 +178,8 @@ async function sendWelcomeEmail(toEmail, name) {
 
   });
 
+  console.log("Welcome email sent:", info.messageId);
+
 }
 
 async function sendResetPasswordEmail(toEmail, resetLink) {
@@ -192,7 +194,7 @@ async function sendResetPasswordEmail(toEmail, resetLink) {
 
   }
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
 
     from: process.env.EMAIL_FROM || process.env.SMTP_USER,
 
@@ -241,6 +243,8 @@ async function sendResetPasswordEmail(toEmail, resetLink) {
     `,
 
   });
+
+  console.log("Reset password email sent:", info.messageId);
 
 }
 
@@ -316,21 +320,9 @@ app.post("/api/auth/register", async (req, res) => {
 
     });
 
-    try {
+    res.json({
 
-      await sendWelcomeEmail(user.email, user.name);
-
-    } catch (mailErr) {
-
-      console.error("Welcome email error:", mailErr);
-
-    }
-
-    return res.json({
-
-      message:
-
-        "Account created successfully. Please check your email and log in.",
+      message: "Account created successfully.",
 
       user: {
 
@@ -341,6 +333,12 @@ app.post("/api/auth/register", async (req, res) => {
         email: user.email,
 
       },
+
+    });
+
+    sendWelcomeEmail(user.email, user.name).catch((mailErr) => {
+
+      console.error("Welcome email error:", mailErr);
 
     });
 
@@ -681,4 +679,5 @@ async function startServer() {
 }
 
 startServer();
+
  
