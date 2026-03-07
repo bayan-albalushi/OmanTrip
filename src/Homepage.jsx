@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import heroImg from "./assets/homepage-hero.png";
 
@@ -119,6 +119,18 @@ export default function Homepage() {
 
   const [openAuth, setOpenAuth] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+
+    window.addEventListener("resize", onResize);
+
+    return () => window.removeEventListener("resize", onResize);
+
+  }, []);
+
   const continueAsGuest = () => {
 
     localStorage.setItem("guest", "true");
@@ -157,6 +169,10 @@ export default function Homepage() {
 <div style={styles.page}>
 <div style={styles.card}>
 <img src={heroImg} alt="OmanTrip hero" style={styles.hero} />
+<div style={styles.overlay} />
+
+        {!isMobile && (
+<>
 <div style={{ ...styles.tag, ...styles.tag1 }}>
 <CarIcon />
 <span>Road trip friendly</span>
@@ -168,6 +184,9 @@ export default function Homepage() {
 <PinIcon />
 <span>Local experiences</span>
 </div>
+</>
+
+        )}
 <div style={styles.topBar}>
 <div style={styles.logo}>OmanTrip.</div>
 <button style={styles.startBtn} onClick={() => setOpenAuth(true)}>
@@ -185,7 +204,7 @@ export default function Homepage() {
 </h1>
 <p style={styles.p}>
 
-            Mountains, deserts, beaches and culture –
+            Mountains, deserts, beaches and culture —
 <br />
 
             planned your way in minutes.
@@ -195,6 +214,23 @@ export default function Homepage() {
             How OmanTrip works
 </button>
 <div style={styles.caption}>No booking. Just smart planning.</div>
+
+          {isMobile && (
+<div style={styles.mobileTagsWrap}>
+<div style={styles.mobileTag}>
+<CarIcon />
+<span>Road trip friendly</span>
+</div>
+<div style={styles.mobileTag}>
+<span>Perfect for family trips</span>
+</div>
+<div style={styles.mobileTag}>
+<PinIcon />
+<span>Local experiences</span>
+</div>
+</div>
+
+          )}
 </div>
 
         {openHow && (
@@ -367,7 +403,7 @@ export default function Homepage() {
 
           @keyframes floatY {
 
-            0%,100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
 
             50% { transform: translateY(-10px); }
 
@@ -395,7 +431,7 @@ const styles = {
 
     justifyContent: "center",
 
-    padding: 24,
+    padding: 12,
 
     fontFamily:
 
@@ -407,13 +443,13 @@ const styles = {
 
   card: {
 
-    width: "min(1200px, 92vw)",
+    width: "min(1200px, 94vw)",
 
-    minHeight: "720px",
+    minHeight: "min(720px, 96vh)",
 
     position: "relative",
 
-    borderRadius: 18,
+    borderRadius: 24,
 
     overflow: "hidden",
 
@@ -437,25 +473,43 @@ const styles = {
 
   },
 
+  overlay: {
+
+    position: "absolute",
+
+    inset: 0,
+
+    background:
+
+      "linear-gradient(90deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.56) 38%, rgba(255,255,255,0.10) 100%)",
+
+    zIndex: 1,
+
+  },
+
   topBar: {
 
     position: "relative",
 
-    zIndex: 2,
+    zIndex: 3,
 
     display: "flex",
 
     justifyContent: "space-between",
 
-    padding: "22px 28px",
+    alignItems: "center",
+
+    gap: 16,
+
+    padding: "20px 22px",
 
   },
 
   logo: {
 
-    fontWeight: 700,
+    fontWeight: 800,
 
-    fontSize: 22,
+    fontSize: "clamp(24px, 3vw, 32px)",
 
     color: "#2f6bff",
 
@@ -469,13 +523,17 @@ const styles = {
 
     color: "#fff",
 
-    padding: "10px 18px",
+    padding: "12px 20px",
 
-    borderRadius: 12,
+    borderRadius: 16,
 
-    fontWeight: 600,
+    fontWeight: 700,
 
     cursor: "pointer",
+
+    fontSize: "clamp(14px, 2vw, 16px)",
+
+    minWidth: 96,
 
   },
 
@@ -483,11 +541,15 @@ const styles = {
 
     position: "relative",
 
-    zIndex: 2,
+    zIndex: 3,
 
-    padding: "80px 28px",
+    padding: "clamp(24px, 5vw, 80px) clamp(22px, 4vw, 28px)",
 
-    maxWidth: 520,
+    maxWidth: 620,
+
+    width: "100%",
+
+    boxSizing: "border-box",
 
   },
 
@@ -495,11 +557,17 @@ const styles = {
 
     margin: 0,
 
-    fontSize: 62,
+    fontSize: "clamp(46px, 9vw, 92px)",
 
-    lineHeight: 1.05,
+    lineHeight: 0.98,
 
     color: "#000",
+
+    fontWeight: 900,
+
+    letterSpacing: "-0.03em",
+
+    maxWidth: 560,
 
   },
 
@@ -507,19 +575,23 @@ const styles = {
 
     marginTop: 18,
 
-    marginBottom: 26,
+    marginBottom: 24,
 
-    fontSize: 18,
+    fontSize: "clamp(15px, 2.8vw, 20px)",
 
-    color: "rgba(0,0,0,.6)",
+    color: "rgba(0,0,0,.62)",
 
-    lineHeight: 1.5,
+    lineHeight: 1.55,
+
+    fontWeight: 600,
+
+    maxWidth: 520,
 
   },
 
   primaryBtn: {
 
-    width: 240,
+    width: "min(280px, 100%)",
 
     border: "none",
 
@@ -527,15 +599,17 @@ const styles = {
 
     color: "#fff",
 
-    padding: "14px 18px",
+    padding: "16px 20px",
 
-    borderRadius: 14,
+    borderRadius: 16,
 
-    fontWeight: 700,
+    fontWeight: 800,
 
     cursor: "pointer",
 
-    fontSize: 15,
+    fontSize: "clamp(14px, 2vw, 16px)",
+
+    boxShadow: "0 12px 28px rgba(59,115,255,0.28)",
 
   },
 
@@ -543,9 +617,11 @@ const styles = {
 
     marginTop: 16,
 
-    color: "rgba(0,0,0,.45)",
+    color: "rgba(0,0,0,.48)",
 
-    fontWeight: 600,
+    fontWeight: 700,
+
+    fontSize: "clamp(13px, 2vw, 15px)",
 
   },
 
@@ -553,7 +629,7 @@ const styles = {
 
     position: "absolute",
 
-    zIndex: 3,
+    zIndex: 4,
 
     display: "inline-flex",
 
@@ -561,11 +637,11 @@ const styles = {
 
     gap: 10,
 
-    padding: "8px 12px",
+    padding: "10px 14px",
 
-    borderRadius: 12,
+    borderRadius: 14,
 
-    background: "rgba(90, 90, 90, 0.65)",
+    background: "rgba(78, 78, 78, 0.68)",
 
     border: "1px solid rgba(255,255,255,0.10)",
 
@@ -575,11 +651,11 @@ const styles = {
 
     WebkitBackdropFilter: "blur(10px)",
 
-    color: "rgba(255,255,255,0.92)",
+    color: "rgba(255,255,255,0.96)",
 
-    fontSize: 12.5,
+    fontSize: 13,
 
-    fontWeight: 600,
+    fontWeight: 700,
 
     whiteSpace: "nowrap",
 
@@ -587,11 +663,57 @@ const styles = {
 
   },
 
-  tag1: { top: 360, left: "58%", animationDelay: "0s" },
+  tag1: { bottom: 190, right: 84, animationDelay: "0s" },
 
-  tag2: { top: 425, left: "47%", animationDelay: "0.6s" },
+  tag2: { bottom: 125, right: 150, animationDelay: "0.6s" },
 
-  tag3: { top: 490, left: "53%", animationDelay: "1.2s" },
+  tag3: { bottom: 58, right: 88, animationDelay: "1.2s" },
+
+  mobileTagsWrap: {
+
+    marginTop: 20,
+
+    display: "grid",
+
+    gap: 10,
+
+    width: "min(320px, 100%)",
+
+  },
+
+  mobileTag: {
+
+    display: "inline-flex",
+
+    alignItems: "center",
+
+    gap: 10,
+
+    padding: "10px 14px",
+
+    borderRadius: 14,
+
+    background: "rgba(78, 78, 78, 0.78)",
+
+    border: "1px solid rgba(255,255,255,0.10)",
+
+    color: "rgba(255,255,255,0.96)",
+
+    fontSize: 13,
+
+    fontWeight: 700,
+
+    width: "fit-content",
+
+    maxWidth: "100%",
+
+    boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
+
+    backdropFilter: "blur(10px)",
+
+    WebkitBackdropFilter: "blur(10px)",
+
+  },
 
   modalBackdrop: {
 
@@ -599,7 +721,7 @@ const styles = {
 
     inset: 0,
 
-    background: "rgba(0,0,0,0.35)",
+    background: "rgba(0,0,0,0.42)",
 
     display: "grid",
 
@@ -617,7 +739,7 @@ const styles = {
 
     background: "#fff",
 
-    borderRadius: 18,
+    borderRadius: 20,
 
     border: "1px solid rgba(0,0,0,0.08)",
 
@@ -633,7 +755,7 @@ const styles = {
 
     background: "#fff",
 
-    borderRadius: 18,
+    borderRadius: 20,
 
     border: "1px solid rgba(0,0,0,0.08)",
 
@@ -797,7 +919,7 @@ const styles = {
 
     borderRadius: 12,
 
-    padding: "10px 12px",
+    padding: "12px 14px",
 
     fontWeight: 900,
 
@@ -817,7 +939,7 @@ const styles = {
 
     borderRadius: 12,
 
-    padding: "10px 12px",
+    padding: "12px 14px",
 
     fontWeight: 900,
 
