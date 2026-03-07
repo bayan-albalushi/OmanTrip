@@ -10,11 +10,11 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
-import nodemailer from "nodemailer";
-
 import crypto from "crypto";
 
 import "dotenv/config";
+
+import { Resend } from "resend";
 
 import User from "./models/User.js";
 
@@ -37,6 +37,8 @@ const MONGODB_URI =
 const FRONTEND_URL =
 
   process.env.FRONTEND_URL || "https://oman-trip.vercel.app";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* =========================
 
@@ -108,61 +110,21 @@ function createToken(user) {
 
 }
 
-function getTransporter() {
-
-  if (
-
-    !process.env.SMTP_HOST ||
-
-    !process.env.SMTP_PORT ||
-
-    !process.env.SMTP_USER ||
-
-    !process.env.SMTP_PASS
-
-  ) {
-
-    return null;
-
-  }
-
-  return nodemailer.createTransport({
-
-    host: process.env.SMTP_HOST,
-
-    port: Number(process.env.SMTP_PORT),
-
-    secure: Number(process.env.SMTP_PORT) === 465,
-
-    auth: {
-
-      user: process.env.SMTP_USER,
-
-      pass: process.env.SMTP_PASS,
-
-    },
-
-  });
-
-}
-
 async function sendWelcomeEmail(toEmail, name) {
 
-  const transporter = getTransporter();
+  if (!process.env.RESEND_API_KEY) {
 
-  if (!transporter) {
-
-    console.log("SMTP config missing. Skipping welcome email.");
+    console.log("RESEND_API_KEY missing. Skipping welcome email.");
 
     return;
 
   }
 
-  const info = await transporter.sendMail({
+  const { data, error } = await resend.emails.send({
 
-    from: process.env.EMAIL_FROM || process.env.SMTP_USER,
+    from: "OmanTrip <onboarding@resend.dev>",
 
-    to: toEmail,
+    to: [toEmail],
 
     subject: "Welcome to OmanTrip",
 
@@ -178,27 +140,31 @@ async function sendWelcomeEmail(toEmail, name) {
 
   });
 
-  console.log("Welcome email sent:", info.messageId);
+  if (error) {
+
+    throw error;
+
+  }
+
+  console.log("Welcome email sent:", data?.id);
 
 }
 
 async function sendResetPasswordEmail(toEmail, resetLink) {
 
-  const transporter = getTransporter();
+  if (!process.env.RESEND_API_KEY) {
 
-  if (!transporter) {
-
-    console.log("SMTP config missing. Skipping reset password email.");
+    console.log("RESEND_API_KEY missing. Skipping reset password email.");
 
     return;
 
   }
 
-  const info = await transporter.sendMail({
+  const { data, error } = await resend.emails.send({
 
-    from: process.env.EMAIL_FROM || process.env.SMTP_USER,
+    from: "OmanTrip <onboarding@resend.dev>",
 
-    to: toEmail,
+    to: [toEmail],
 
     subject: "Reset your OmanTrip password",
 
@@ -244,7 +210,13 @@ async function sendResetPasswordEmail(toEmail, resetLink) {
 
   });
 
-  console.log("Reset password email sent:", info.messageId);
+  if (error) {
+
+    throw error;
+
+  }
+
+  console.log("Reset password email sent:", data?.id);
 
 }
 
@@ -679,5 +651,3 @@ async function startServer() {
 }
 
 startServer();
-
- 
